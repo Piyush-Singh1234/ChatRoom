@@ -1,4 +1,4 @@
-# 🚀 Asynchronous Chat Server (C++ & Boost.Asio)
+# Asynchronous Chat Server (C++ & Boost.Asio)
 
 ## Project Overview
 
@@ -6,7 +6,7 @@ This is a high-performance, concurrent chat application built using **C++** and 
 
 The server's design focuses on isolating client state and utilizing a single-threaded event loop (`io_context`) to manage all network I/O operations, thereby eliminating common multi-threading synchronization issues.
 
-## ✨ Features
+## Features
 
   * **Asynchronous I/O:** Utilizes `boost::asio::async_read` and `async_write` for non-blocking network operations, allowing the server to handle dozens of clients without lag.
   * **Scalable Architecture:** Implemented a robust **Room / Session / Participant** design pattern, where each connected client is managed by its own dedicated `Session` object.
@@ -14,7 +14,7 @@ The server's design focuses on isolating client state and utilizing a single-thr
   * **Thread-Safe Communication:** Uses a separate `std::thread` for client-side user input, scheduling all network write operations onto the `io_context` via `boost::asio::post` to prevent race conditions.
   * **Message Queues:** Implements an outgoing message queue within each `Session` to serialize write operations, ensuring messages are delivered in the correct order to the client.
 
-## 🛠️ Prerequisites
+## Prerequisites
 
 To build and run this project, you need:
 
@@ -31,7 +31,7 @@ sudo apt-get install libboost-all-dev
 brew install boost
 ```
 
-## ⚙️ Build and Run
+## Build and Run
 
 Assuming your source files are named `server.cpp` (or equivalent) and `client.cpp`.
 
@@ -63,15 +63,15 @@ Open multiple terminal windows and connect clients to the server's IP (use `127.
 
 ```bash
 # Client 1
-./clientApp 127.0.0.1 8080
+./clientApp 8080
 
 # Client 2
-./clientApp 127.0.0.1 8080
+./clientApp 8080
 ```
 
 You can now start typing messages in the client windows, and the server will broadcast them to all other connected participants.
 
-## 🌐 Architecture Overview
+## Architecture Overview
 
 The server's design is based on the following key components:
 
