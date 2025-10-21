@@ -97,17 +97,22 @@ void Room::leave(ParticipantPointer participant){
     participants.erase(participant);
 }
 
-// Two-parameter deliver
+
 void Room::deliver(ParticipantPointer participant, Message &message){
-    messageQueue.push_back(message);
-    while(!messageQueue.empty()){
-        Message msg = messageQueue.front();
-        messageQueue.pop_front(); 
+    // messageQueue.push_back(message);
+    // while(!messageQueue.empty()){
+    //     Message msg = messageQueue.front();
+    //     messageQueue.pop_front(); 
         
-        for (ParticipantPointer _participant : participants) {
-            if (participant != _participant) {
-                _participant->write(msg);
-            }
+    //     for (ParticipantPointer _participant : participants) {
+    //         if (participant != _participant) {
+    //             _participant->write(msg);
+    //         }
+    //     }
+    // }
+    for (ParticipantPointer _participant : participants) {
+        if (participant != _participant) {
+            _participant->write(message);
         }
     }
 }
